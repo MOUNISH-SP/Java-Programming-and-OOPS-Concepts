@@ -1,0 +1,13 @@
+package q11056;
+
+public class ElementCheck {
+	public boolean elementFinder(int[] arr) {
+		int n=Math.min(arr.length,4) ;
+	for(int i=0; i<n; i++){
+     if( arr[i] == 4){
+      return true;
+        }
+	}
+return false;
+	}
+}
