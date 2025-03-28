@@ -1,0 +1,46 @@
+package q14112;
+import java.util.Scanner;
+
+
+
+public class CTJ14112 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read the size of the list and number of queries
+        int N = scanner.nextInt();
+        int M = scanner.nextInt();
+
+        // Initialize the difference array
+        long[] diff = new long[N + 1];
+        
+        // Process each query
+        for (int i = 0; i < M; i++) {
+            int A = scanner.nextInt();
+            int B = scanner.nextInt();
+            long V = scanner.nextLong();
+
+            // Apply the difference array technique
+            diff[A - 1] += V; // Convert 1-based index to 0-based
+            if (B < N) {
+                diff[B] -= V;
+            }
+        }
+
+        // Calculate the prefix sum and find the maximum value
+        long max = Long.MIN_VALUE;
+        long current = 0;
+        for (int i = 0; i < N; i++) {
+            current += diff[i];
+            if (current > max) {
+                max = current;
+            }
+        }
+
+        // Output the result
+        System.out.println(max);
+        
+        scanner.close();
+    }
+}
