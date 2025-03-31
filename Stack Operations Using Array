@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+    /*method to find is full or not*/
+    public boolean isFull() {
+		return top==size-1;
+    }
+    
+     /*method to find stack size*/
+    public int stackSize(){
+		if(isEmpty()){
+			return 0;
+		}
+			return top + 1;
+    }
+
+ public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Stack Implementation using fixed size array");
+        System.out.print("Enter the size of the stack: ");
+        int capacity=sc.nextInt();
+        ClassFixedArrayStack stackObject=new ClassFixedArrayStack(capacity);
+        System.out.println("Enter 1 to push\nEnter 2 to pop\nEnter 3 to display stack\nEnter 4 to display the peek\nEnter 5 to print size of stack\nEnter 6 to exit");
+        while(true){
+        	System.out.print("Enter your option: ");	
+        	int choice=sc.nextInt();
+        		switch(choice){
+        			default:
+        				System.out.println("Enter the right option");
+        				break;
+        			case 1:
+        				System.out.print("Scan element to push: ");
+        				int item=sc.nextInt();
+        				stackObject.push(item);
+        			//	stackObject.display();
+        				break;
+        			case 2:
+        				stackObject.pop();
+        				break;
+        			case 3:
+        				System.out.print("Elements in stack: \n");
+        				stackObject.display();
+        				break;
+        			case 4:
+        				stackObject.peek();
+        				break;
+        			case 5:
+        				System.out.println("Size of Stack is: "+stackObject.stackSize());
+        				break;
+        			case 6:
+        				return;
+        		
+        		
+        	}
+        	
+        }
+        
+    }
+}
