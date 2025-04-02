@@ -1,0 +1,36 @@
+package q14029;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class CTJ14029 {
+
+    // Enqueue function that prints elements while enqueuing them
+    public static void enqueue(Queue<Integer> queue, int[] elements) {
+        for (int element : elements) {
+            queue.add(element);
+            System.out.print(element + " ");  // Print each enqueued element
+        }
+        System.out.println();  // Move to the next line after enqueuing all elements
+    }
+
+    // Reverse function using a stack to reverse the queue elements
+    public static void reverse(Queue<Integer> queue) {
+        Stack<Integer> stack = new Stack<>();
+        
+        // Move all elements from queue to stack
+        while (!queue.isEmpty()) {
+            stack.push(queue.remove());
+        }
+        
+        // Move them back to the queue in reversed order
+        while (!stack.isEmpty()) {
+            queue.add(stack.pop());
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
