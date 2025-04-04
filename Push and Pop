@@ -1,0 +1,34 @@
+package q14747;
+import java.util.Scanner;
+import java.util.Stack;
+public class CTJ14747 {
+	public static void main(String[] args){
+		Scanner Scanner=new Scanner(System.in);
+			int n=Scanner.nextInt();
+		int[] pushed = new int[n];
+		int[] popped=new int[n];
+		for(int i=0;i<n;i++){
+			pushed[i]=Scanner.nextInt();
+		}
+			for( int i=0;i<n;i++){
+				popped[i]=Scanner.nextInt();
+			}
+		System.out.println(validateStackSequences(pushed,popped)? 1:0);
+		Scanner.close();
+		}
+	public static boolean validateStackSequences(int [] pushed,int[] popped){
+		Stack<Integer> stack = new Stack<>();
+		int j=0;
+		for(int val:pushed){
+			
+stack.push(val);
+			while(!stack.isEmpty()&&stack.peek()==popped[j]){
+				stack.pop();
+				j++;
+			}
+		}
+		return stack.isEmpty();
+	}
+	}
+
+
