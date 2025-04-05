@@ -1,0 +1,35 @@
+package q27894;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+public class CTJ27894 {
+	public static void sortNearlyArray(int []arr,int k){
+		PriorityQueue<Integer>minHeap=new PriorityQueue<>();
+		int n=arr.length;
+		int[] result=new int[n];
+		int index= 0;
+		for(int i=0;i<=k&& i<n;i++){
+			minHeap.add(arr[i]);
+		}
+		for(int i=k+1;i<n;i++){
+			result[index++]=minHeap.poll();
+				minHeap.add(arr[i]);
+		}
+		while(!minHeap.isEmpty()){
+			result[index++]=minHeap.poll();
+		}
+		for(int num : result){
+			System.out.print(num + " ");
+		}
+	}
+	
+public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int k=sc.nextInt();
+		int [] arr=new int[n];
+		for(int i=0;i<n;i++){
+			arr[i]=sc.nextInt();
+		}
+		sortNearlyArray(arr,k);
+	}
+}
