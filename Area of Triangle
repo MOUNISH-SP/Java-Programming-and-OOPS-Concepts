@@ -1,0 +1,60 @@
+import java.util.Scanner;
+    private double altitude;
+
+    public RightAngledTriangle_Area_Class(double base, double altitude) {
+        this.base = base;
+        this.altitude = altitude;
+    }
+
+    
+   public void get_Area() {
+        double area = 0.5 * base * altitude;
+        System.out.printf("area: %.2f%n", area);
+    }
+}
+
+class EquilateralTriangle_Area_Class extends Triangle_Area_Class {
+    private double side;
+
+    public EquilateralTriangle_Area_Class(double side) {
+        this.side = side;
+    }
+
+    
+   public void get_Area() {
+        double area = (Math.sqrt(3) / 4) * side * side;
+        System.out.printf("area: %.2f%n", area);
+    }
+}
+
+public class AreaOfTriangle {
+    public static void main(String[] args) {
+        Scanner Sc = new Scanner(System.in);
+        System.out.print("Press 1 for right-angled triangle\nPress 2 for equilateral triangle\nChoice: ");
+        int choice = Sc.nextInt();
+        double x, y;
+        Triangle_Area_Class TA = null;
+
+        switch (choice) {
+            case 1:
+                System.out.print("base: ");
+                x = Sc.nextDouble();
+                System.out.print("altitude: ");
+                y = Sc.nextDouble();
+                TA = new RightAngledTriangle_Area_Class(x, y);
+                break;
+            case 2:
+                System.out.print("side: ");
+                x = Sc.nextDouble();
+                TA = new EquilateralTriangle_Area_Class(x);
+                break;
+            default:
+                System.out.println("Invalid choice");
+                return;
+        }
+        
+        TA.get_Area();
+        Sc.close();
+    }
+}
+
