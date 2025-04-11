@@ -1,0 +1,36 @@
+package q22052;
+
+
+
+
+import java.util.*;
+class Vehicle{
+	public void start(){
+		
+	}
+}
+class Motorcycle extends Vehicle{
+	public void start(){
+		System.out.println("Motorcycle: kickstarting");
+	}
+}
+class Truck extends Vehicle{
+	public void start(){
+		System.out.println("Truck: ignition button");
+	}
+}
+
+class Car extends Vehicle{
+	public void start(){
+		System.out.println("Car: ignition key");
+	}
+}
+
+
+
+
+
+
+
+
+
