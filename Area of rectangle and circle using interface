@@ -1,0 +1,51 @@
+import java.util.Scanner;
+    void getData();
+    void display();
+}
+
+class Circle implements Shape {
+    private double radius;
+    
+    @Override
+    public void getData() {
+        Scanner sc = new Scanner(System.in);
+        radius = sc.nextDouble();
+    }
+
+    @Override
+    public void display() {
+        double area = 3.14 * radius * radius;
+        System.out.printf("Area of Circle is %.1f\n", area);
+    }
+}
+
+class Rectangle implements Shape {
+    private double length;
+    private double width;
+
+    @Override
+    public void getData() {
+        Scanner sc = new Scanner(System.in);
+        length = sc.nextDouble();
+        width = sc.nextDouble();
+    }
+
+    @Override
+    public void display() {
+        double area = length * width;
+        System.out.printf("Area of Rectangle is %.1f\n", area);
+    }
+}
+
+// Driver code
+class Area {
+    public static void main(String arg[]) {
+        Circle c = new Circle();
+        c.getData();
+        c.display();
+
+        Rectangle r = new Rectangle();
+        r.getData();
+        r.display();
+    }
+}
