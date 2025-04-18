@@ -1,0 +1,56 @@
+package q23470;
+import java.util.Scanner;
+
+interface Playable {
+
+	    void play(); // Method to play audio
+}
+
+// Implement MP3Player class
+class MP3Player implements Playable {
+    @Override
+    public void play() {
+        System.out.println("Playing MP3 audio");
+    }
+}
+
+// Implement WAVPlayer class
+class WAVPlayer implements Playable {
+    @Override
+    public void play() {
+        System.out.println("Playing WAV audio");
+    }
+}
+
+// MusicPlayer class to play audio
+class MusicPlayer {
+    public void playAudio(Playable audio) {
+        audio.play(); // Call the play method of the Playable interface
+    }
+}
+	// write your code here..
+
+
+public class PlayerMain {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        MP3Player mp3Player = new MP3Player();
+        WAVPlayer wavPlayer = new WAVPlayer();
+        MusicPlayer musicPlayer = new MusicPlayer();
+
+        System.out.println("Choose an audio format:");
+        System.out.println("1. MP3");
+        System.out.println("2. WAV");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                musicPlayer.playAudio(mp3Player);
+                break;
+            case 2:
+                musicPlayer.playAudio(wavPlayer);
+                break;
+            default:
+                System.out.println("Invalid choice");
+        }
