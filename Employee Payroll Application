@@ -1,0 +1,41 @@
+package com;
+public class Employee {
+	private String name;
+	private int hoursWorked;
+	private double hourlyRate;
+
+    // Constructor
+    public Employee(String name, int hoursWorked, double hourlyRate) {
+        this.name = name;
+        this.hoursWorked = hoursWorked;
+        this.hourlyRate = hourlyRate;
+    }
+
+    // Method to calculate salary
+    public double calculateSalary() {
+        return hoursWorked * hourlyRate;
+    }
+}
+
+package q18040;
+import com.*;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("hours worked: ");
+        int hoursWorked = scanner.nextInt();
+        scanner.nextLine(); // consume newline left-over
+
+        System.out.print("hourly rate: ");
+        double hourlyRate = scanner.nextDouble();
+
+        Employee employee = new Employee(name, hoursWorked, hourlyRate);
+        double salary =  employee.calculateSalary();
+        System.out.println("Salary: " +salary);
+    }
+}
