@@ -1,0 +1,48 @@
+package examplemath;
+import java.util.Scanner;
+
+public class Arithmetic {
+	//write your code here
+	
+	public static int add(int a,int b){
+		return a+b;
+	}
+	public static int subtract(int a,int b){
+		return a-b;
+	}
+}
+package exampletrignometry;
+
+
+public class Trigonometry {
+	//write your code here
+	
+//write your code here
+	public static double sin(double angle){
+		return Math.sin(angle);
+	}
+	public static double cos(double angle){
+		return Math.cos(angle);
+	}
+}
+import examplemath.Arithmetic;
+import exampletrignometry.Trigonometry;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("First number: ");
+        int a = sc.nextInt();
+        System.out.print("Second number: ");
+        int b = sc.nextInt();
+        System.out.println("Addition: " + Arithmetic.add(a, b));
+        System.out.println("Subtraction: " + Arithmetic.subtract(a, b));
+        System.out.print("Angle: ");
+        double angle = sc.nextDouble();
+        System.out.println("Sine of " + angle + ": " + Trigonometry.sin(angle));
+        System.out.println("Cosine of " + angle + ": " + Trigonometry.cos(angle));
+        sc.close();
+    }
+}
