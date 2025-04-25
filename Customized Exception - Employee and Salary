@@ -1,0 +1,38 @@
+class empexp extends Exception {
+    public empexp(String exp) {
+        super(exp);
+    }
+}
+
+class Employee {
+    String firstName;
+    double salary;
+	public Employee(String firstName, double salary) {
+        this.firstName = firstName;
+        this.salary = salary;
+    }
+    public void display() {
+        System.out.println("Name: " + firstName);
+        System.out.println("Salary: " + salary);
+        try {
+            if (salary < 2000) {
+                throw new empexp("Exception: Salary is below 2000");
+            }
+        } catch (empexp e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+public class EmployeeManagement {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("first name: ");
+        String str = sc.nextLine();
+        System.out.print("salary: ");
+        double s = sc.nextDouble();
+        Employee ee = new Employee(str, s);
+        ee.display();
+        sc.close();
+    }
+}
+
