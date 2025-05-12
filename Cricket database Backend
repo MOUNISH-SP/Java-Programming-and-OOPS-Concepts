@@ -1,0 +1,65 @@
+// index.js   (CommonJS style)
+const express = require("express");
+const cors    = require("cors");
+const { Pool } = require("pg");
+
+// ────── DB POOL ──────
+const pool = new Pool({
+  user:     "postgres",
+  password: "Mahasri@123",
+  host:     "localhost",
+  port:     5432,
+  database: "player_status",
+});
+
+(async () => {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS player_stats(
+        id          SERIAL PRIMARY KEY,
+        player_name TEXT    NOT NULL,
+        matches     INTEGER NOT NULL CHECK (matches > 0),
+        runs_wkts   INTEGER NOT NULL CHECK (runs_wkts >= 0),
+        average     NUMERIC NOT NULL CHECK (average >= 0),
+        created_at  TIMESTAMP DEFAULT NOW()
+      );
+    `);
+    console.log("✔  player_stats table ready");
+  } catch (err) {
+    console.error("Table‑init error:", err);
+    process.exit(1);          // stop server if DB setup fails
+  }
+})();
+
+// ────── EXPRESS APP ──────
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// POST /api/stats  → insert one record
+app.post("/api/stats", async (req, res) => {
+  try {
+    const { playerName, matches, runsOrWickets, average } = req.body;
+
+    if (!playerName?.trim() || +matches <= 0 || +runsOrWickets < 0 || +average < 0) {
+      return res.status(400).json({ error: "Invalid input data" });
+    }
+
+    const { rows } = await pool.query(
+      `INSERT INTO player_stats (player_name, matches, runs_wkts, average)
+       VALUES ($1,$2,$3,$4) RETURNING *`,
+      [playerName.trim(), Number(matches), Number(runsOrWickets), Number(average)]
+    );
+
+    res.status(201).json(rows[0]);
+  } catch (err) {
+    console.error("Insert error:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// ────── START SERVER ──────
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(API listening on http://localhost:${PORT}));
+
+module.exports = app;   // handy for testing
