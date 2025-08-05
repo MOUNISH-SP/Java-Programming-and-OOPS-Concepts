@@ -1,0 +1,36 @@
+/*package q28377;
+import java.util.Scanner;
+class InvalidFilenameException extends Exception {
+  // write the code..
+
+
+
+}
+
+public class FilenameValidator {
+    public static void main(String[] args) {
+
+
+      
+    }
+
+}
+*/
+package q28377;
+import java.util.Scanner;
+class InvalidFilenameException extends Exception {
+  
+  // write the code..
+  public InvalidFilenameException(String message) {
+    super(message);
+  }
+   
+}
+public class FilenameValidator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String filename = scanner.nextLine();
+        try {
+            validateFilename(filename);
+            System.out.println("Filename is valid: " + filename);
+        } catch (InvalidFilenameException e) {
