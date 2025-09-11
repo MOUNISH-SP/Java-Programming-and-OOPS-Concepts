@@ -1,0 +1,57 @@
+package q17210;
+//package q17210;
+import java.util.*;
+import java.lang.*;
+	   class A extends Thread
+		   {
+			   int n,i;
+			   A(int n)
+			   {
+				   this.n=n;
+			   }
+			   public void run(){
+				   for(i=1;i<=n;i++)
+					   {
+		    if(i%2==0)
+		    {
+			System.out.println("Even:" + i);
+				try{Thread.sleep(100);
+				   }
+				catch(InterruptedException e)
+					{
+						//System.out.println();
+					}
+		    }
+	   }
+		}
+		   }
+class B extends Thread
+	{
+		int n,i;
+		B(int n)
+		{
+			this.n=n;
+		}
+		public void run()
+		{
+		for(i=1;i<=n;i++)
+	{
+		if(i%2!=0)
+		{
+			System.out.println("Odd:" + i);
+			try{Thread.sleep(100);
+			   }
+			catch(InterruptedException e)
+				{
+					System.out.println();
+				}
+		}}
+		}
+	}
+class Main
+	{
+		public static void main(String args[])
+		{
+			Scanner s=new Scanner(System.in);
+			System.out.print("Enter the maximum even number:");
+				int n1=s.nextInt();
