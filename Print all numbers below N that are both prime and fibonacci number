@@ -1,0 +1,48 @@
+package q32312;
+            int next=a+b;
+            a=b;
+            b=next;
+       }
+	}
+    
+    
+}
+
+public class PrimeFibonacci {
+    // write your code here...
+    
+    
+  // write your code here...
+         public static void main(String[] args){
+      Scanner scanner=new Scanner(System.in);
+      System.out.print("Enter the value of N: ");
+      int n=scanner.nextInt();
+
+      PrimeThread primeThread=new PrimeThread(n);
+      FibonacciThread fibonacciThread=new FibonacciThread(n);
+
+      primeThread.start();
+      fibonacciThread.start();
+
+      try{
+          primeThread.join();
+          fibonacciThread.join();
+       }catch(InterruptedException e){
+           Thread.currentThread().interrupt();
+       }
+       
+       Set<Integer>primes=primeThread.getPrimes();
+       Set<Integer>fibonacciNumbers=fibonacciThread.getFibonacciNumbers();
+
+       Set<Integer>commonNumbers=new HashSet<>(primes);
+       commonNumbers.retainAll(fibonacciNumbers);
+
+       System.out.println("Numbers that are both prime and Fibonacci:");
+       for(int num:commonNumbers){
+             System.out.print(num+" ");
+       }
+       System.out.println();
+       scanner.close();
+		 }
+    
+}
